@@ -1,5 +1,6 @@
 package pl.patrykchmiel.demo.oauth2.web;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -17,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GetUserResponseDTO> user(@AuthenticationPrincipal OAuth2User principal) {
         return ResponseEntity.ok(userService.getUserInfo(principal));
     }
